@@ -11,9 +11,13 @@
 @interface Card : UIImageView
 
 
-@property BOOL isFlipped;
+
 @property UIImage *cardImage;
 @property UIImage *defaultImage;
+@property NSString *imageName;
+@property BOOL isFlipped;
+@property BOOL isMatched;
+
 
 
 
