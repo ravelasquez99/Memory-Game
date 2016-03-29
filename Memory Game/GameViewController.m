@@ -27,6 +27,8 @@
 @property NSMutableArray *cardsAsStrings;
 @property BOOL isThereAMatch;
 @property int matches;
+@property (weak, nonatomic) IBOutlet UILabel *timer;
+@property int seconds;
 
 
 @end
@@ -44,6 +46,13 @@
     
     //this is how I check matches.
     self.cardsAsStrings = [NSMutableArray new];
+    
+    //timer
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                     target:self
+                                   selector:@selector(updateTimerLabel)
+                                   userInfo:nil
+                                    repeats:YES];
     
 }
 
@@ -91,6 +100,7 @@
     self.taps = 0;
     self.matches = 0;
     self.matchCounter.text = @"Matches 0";
+    self.seconds = 0;
     
     
     NSUInteger count = [self.cards count];
@@ -200,6 +210,12 @@
         NSLog(@"not a match");
         return NO;
     }
+}
+
+-(void)updateTimerLabel {
+    self.seconds++;
+    self.timer.text = [NSString stringWithFormat:@"Time:%i",self.seconds];
+    
 }
 
 

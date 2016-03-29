@@ -139,7 +139,9 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDG-Xd-gc9">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="ed8-Oj-Ozh"/>
+                                    <constraint firstAttribute="width" constant="44" id="ed8-Oj-Ozh">
+                                        <variation key="widthClass=compact" constant="67"/>
+                                    </constraint>
                                     <constraint firstAttribute="height" constant="21" id="xwO-ve-tiF"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -633,6 +635,7 @@
                     </view>
                     <connections>
                         <outlet property="matchCounter" destination="7wY-nn-ejP" id="Hoo-Jv-k2h"/>
+                        <outlet property="timer" destination="KDG-Xd-gc9" id="bqF-61-4t3"/>
                         <outletCollection property="images" destination="rmU-0b-zeq" collectionClass="NSMutableArray" id="Xgo-iD-g5x"/>
                         <outletCollection property="images" destination="psu-EZ-fZc" collectionClass="NSMutableArray" id="EFa-c3-Vvu"/>
                         <outletCollection property="images" destination="0Us-u5-y8c" collectionClass="NSMutableArray" id="fQ8-Xc-oGH"/>
