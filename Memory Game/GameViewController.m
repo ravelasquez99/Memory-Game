@@ -6,6 +6,9 @@
 //  Copyright © 2016 Richard Velazquez. All rights reserved.
 //
 
+
+//alt: performselector afteterdelay
+
 #import "GameViewController.h"
 #import "Card.h"
 
@@ -29,6 +32,14 @@
 @property int matches;
 @property (weak, nonatomic) IBOutlet UILabel *timer;
 @property int seconds;
+@property int finalTime;
+@property int topScore;
+
+
+
+//user defaults call
+@property NSUserDefaults *defaults;
+@property int score;
 
 
 @end
@@ -43,9 +54,6 @@
     [self shuffleCards];
     [self generateImages];
     self.matches = 0;
-    
-    //this is how I check matches.
-    self.cardsAsStrings = [NSMutableArray new];
     
     //timer
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0
@@ -97,6 +105,7 @@
 {
     [self createCardDeck];
     [self generateImages];
+    [self resetUserIneractionEnabled];
     self.taps = 0;
     self.matches = 0;
     self.matchCounter.text = @"Matches 0";
@@ -181,19 +190,18 @@
             [self.tappedCard1 setUserInteractionEnabled:YES];
             [self.tappedCard2 setUserInteractionEnabled:YES];//I know I don't need this. It just helps me proccess what is happening
 
-        
             self.cardsAsStrings = [NSMutableArray new];
+            }
+        
+        if (self.matches == 8) {
+
+            [self alertWin];
         }
     }//ends 2nd tap routine
         
         //trigger label change for count
         //check for game end
         //trigger game end logic
-
-   
-    
-    
-    
 }
 
 -(BOOL)matchCheck {
@@ -219,12 +227,28 @@
 }
 
 
-
+-(void)alertWin {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"You Won!" message:@"You got every match" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *playAgain = [UIAlertAction actionWithTitle:@"You Won!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                                { [self shuffleCards];}];
+    
+    [alert addAction:playAgain];
+    [self presentViewController:alert animated:YES completion:nil];
+}
 
 - (IBAction)onShuffleCardsButtonPressed:(UIButton *)sender {
     
     [self shuffleCards];
     
 }
+
+-(void)resetUserIneractionEnabled {
+    for (Card *card in self.images) {
+        [card setUserInteractionEnabled:YES];
+    }
+}
+
+
 
 @end
